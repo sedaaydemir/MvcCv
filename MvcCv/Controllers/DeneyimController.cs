@@ -43,5 +43,17 @@ namespace MvcCv.Controllers
             TblDeneyim t = repo.Find(x => x.ID == id);
             return View(t);
         }
+        [HttpPost]
+        public ActionResult DeneyimGetir(TblDeneyim p)
+        {
+            TblDeneyim t = repo.Find(x => x.ID == p.ID);
+            t.Baslik=p.Baslik;
+            t.AltBaslik= p.AltBaslik;
+            t.Tarih =p.Tarih;
+            t.Aciklama=p.Aciklama;
+            repo.TUpdate(t);
+
+            return RedirectToAction("index");
+        }
     }
 }
