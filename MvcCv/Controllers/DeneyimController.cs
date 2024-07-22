@@ -1,4 +1,5 @@
-﻿using MvcCv.Repositories;
+﻿using MvcCv.Models.Entity;
+using MvcCv.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,31 @@ namespace MvcCv.Controllers
         {
             var degerler = repo.List();
             return View(degerler);
+        }
+
+        [HttpGet]
+        public ActionResult DeneyimEkle()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DeneyimEkle(TblDeneyim p)
+        {
+            repo.TAdd(p);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeneyimSil(int id)
+        {
+            TblDeneyim t = repo.Find(x=>x.ID == id);
+            repo.TDelete(t);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult DeneyimGetir(int id)
+        {
+            TblDeneyim t = repo.Find(x => x.ID == id);
+            return View(t);
         }
     }
 }
