@@ -51,7 +51,7 @@ namespace MvcCv.Controllers
             t.AltBaslik= p.AltBaslik;
             t.Tarih =p.Tarih;
             t.Aciklama=p.Aciklama;
-            repo.TUpdate(t);
+            repo.TUpdate(t);//t den gelen degerı guncelle
 
             return RedirectToAction("index");
         }
